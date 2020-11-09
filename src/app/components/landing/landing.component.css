@@ -1,0 +1,23 @@
+.left-panel {
+    background-image: url("../../../assets/surfista.png");
+    background-color: rgba(221, 221, 221, 0.7);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    flex-wrap: wrap;
+    height: 90vh;
+}
+
+.right-panel {
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    height: 90vh;
+}
+
+.icon {
+    size: 4rem;
+    margin-right: 15px;
+}

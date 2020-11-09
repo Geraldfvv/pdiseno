@@ -1,0 +1,270 @@
+<div class="container-fluid">
+  <a href="/menu" class="my-3 mr-4"
+    ><i class="fa fa-arrow-circle-left fa-2x" style="color: #134e6f"></i
+  ></a>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-page">
+        <!--nav-->
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a (click)="breadcrumb(0)">{{ structService.org[1] }}</a>
+            </li>
+            <li
+              class="breadcrumb-item"
+              *ngIf="structService.structureFlow.length >= 1"
+            >
+              <a (click)="breadcrumb(1)">{{
+                structService.structureFlow[0].name
+              }}</a>
+            </li>
+            <li
+              class="breadcrumb-item"
+              *ngIf="structService.structureFlow.length >= 2"
+            >
+              <a>{{ structService.structureFlow[1].name }}</a>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="card-body">
+          <!--create button , search-->
+          <div class="row">
+            <div class="col-md-4" style="margin-top: 10px">
+              <a
+                class="boton btn px-4"
+                style="width: 100%"
+                role="button"
+                data-toggle="modal"
+                href="#struct"
+                (click)="createAction()"
+                >Crear</a
+              >
+            </div>
+            <div class="col-md-8" style="margin-top: 10px">
+              <div class="input-container">
+                <input class="form-control input-field" placeholder="Buscar" />
+                <i class="fa fa-search icon"></i>
+              </div>
+            </div>
+          </div>
+          <!--row-->
+
+          <!--ELEMENTS-->
+          <div class="row">
+            <div
+              class="col-md-4"
+              style="margin-top: 10px"
+              *ngFor="let structure of structService.structureList"
+            >
+              <div class="element">
+                <div class="row" style="margin: 5px">
+                  <div class="col-md-8" (click)="goStructure(structure)">
+                    <p>{{ structure.name }}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <i
+                      class="fa fa-info-circle icons"
+                      (click)="infoStructure(structure)"
+                    ></i>
+                    <i
+                      class="fa fa-pencil icons"
+                      (click)="editStructure(structure)"
+                      role="button"
+                      data-toggle="modal"
+                      href="#struct"
+                    ></i>
+                    <i
+                      class="fa fa-trash icons"
+                      (click)="deleteStructureAux(structure._id)"
+                      role="button"
+                      data-toggle="modal"
+                      href="#confirm"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--card body-->
+      </div>
+      <!--card-->
+    </div>
+    <!--col-->
+  </div>
+  <!--row-->
+</div>
+<!--container-->
+
+<!--CRREATE-->
+<div
+  class="modal fade"
+  id="struct"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'zone'"
+        >
+          {{ action }} Zona
+        </h5>
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'branch'"
+        >
+          {{ action }} Rama
+        </h5>
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'group'"
+        >
+          {{ action }} Grupo
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          class="blue-form form-inline align-self-start"
+          [formGroup]="structService.formStructure"
+        >
+          <div class="form-group" style="width: 100%">
+            <div class="row" style="width: 100%">
+              <input type="text" class="form-control" formControlName="name" />
+              <img
+                src="./assets/landing/placeholder.svg"
+                class="placeholder-bg"
+              />
+              <p class="placeholder-text" style="margin-left: 30px !important">
+                <span class="fa fa-user"></span> Nombre
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <form class="blue-form form-inline align-self-start" *ngIf="structService.type == 'group'"
+        [formGroup]="structService.formMonitor">
+          <div class="form-group" style="width: 100%; margin-top: 20px;" >
+            <div class="row" style="width: 100%">
+              <input type="text" class="form-control monitor"  
+              formControlName="name" role="button" data-toggle="modal" href="#monitor" (click)="loadMonitor()" />
+              <img
+                src="./assets/landing/placeholder.svg"
+                class="placeholder-bg"
+              />
+              <p class="placeholder-text" style="margin-left: 30px !important">
+                <span class="fa fa-user"></span> Monitor
+              </p>
+            </div>
+          </div>
+        </form>
+
+        <p class="error" *ngIf="structService.msg != ''">
+          {{ structService.msg }}
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="boton btn px-4" (click)="aeStructure()">
+          Guardar
+        </button>
+        <button type="button" class="boton btn px-4" data-dismiss="modal">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--DELETE-->
+<div
+  class="modal fade"
+  id="confirm"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'zone'"
+        >
+          ¿Está seguro de que quiere eliminar esta zona?
+        </h5>
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'branch'"
+        >
+          ¿Está seguro de que quiere eliminar esta rama?
+        </h5>
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'group'"
+        >
+          ¿Está seguro de que quiere eliminar este grupo?
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="boton btn px-4"
+          (click)="deleteStructure()"
+          style="background-color: green"
+          data-dismiss="modal"
+        >
+          Confirmar
+        </button>
+        <button
+          type="button"
+          class="boton btn px-4"
+          data-dismiss="modal"
+          style="background-color: red"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="monitor" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Elegir Monitor</h5>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6" style="margin-top: 10px;" *ngFor="let member of memberService.memberList" 
+        data-dismiss="modal" (click)="selectMonitor(member)">
+          <div class="element">
+            <div class="row" style=" margin: 5px;">
+              <div class="col-md-12" style="text-align: center;"><p>{{member.name}}</p></div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

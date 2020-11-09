@@ -1,0 +1,41 @@
+.element{
+    border-radius: 10px;
+    margin: 5px;
+    border: 1px solid #134e6f;
+    font-size: 1rem;
+}
+
+.elementAdd{
+    border-radius: 10px;
+    margin: 5px;
+    border: 2px solid greenyellow;
+    font-size: 1rem;
+}
+
+.element:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.elementAdd:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.breadcrumb{
+    cursor: pointer;  
+    background-color: white;
+}
+
+.boton{
+    background-color: #134e6f
+}
+
+.icons{
+    margin-left: 10px;
+}
+
+i:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}

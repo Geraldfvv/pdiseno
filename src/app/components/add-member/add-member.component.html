@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Card con el form -->
+      <div class="card px-5 py-4 d-flex justify-content-start">
+        <!-- Boton de regresar -->
+        <div class="row mx-2">
+          <a href="/#" class="my-3 mr-4"
+            ><i class="fa fa-arrow-circle-left fa-2x" style="color: #134e6f"></i
+          ></a>
+          <p class="text-black align-text-center my-4">
+            Registra un nuevo Miembro
+          </p>
+        </div>
+        <!-- Final de Boton de Regresar -->
+        <!-- Inicio del Form -->
+        <form
+          class="blue-form d-flex flex-wrap justify-content-center"
+          [formGroup]="memberService.formMiembro"
+        >
+          <div class="col-md-6">
+            <div class="form-group mx-sm-3 mb-2">
+              <div class="row py-4">
+                <input
+                  type="text"
+                  class="form-control px-3 pt-2"
+                  formControlName="name"
+                />
+                <img
+                  src="./assets/landing/placeholder.svg"
+                  class="placeholder-bg"
+                />
+                <p class="placeholder-text">
+                  <span class="fa fa-user"></span> Nombre
+                </p>
+              </div>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <div class="row py-4">
+                <input
+                  type="text"
+                  class="form-control px-3 pt-2"
+                  formControlName="phone"
+                />
+                <img
+                  src="./assets/landing/placeholder.svg"
+                  class="placeholder-bg"
+                />
+                <p class="placeholder-text">
+                  <span class="fa fa-phone"></span> Telefono
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group mx-sm-3 mb-2">
+              <div class="row py-4">
+                <input
+                  type="email"
+                  class="form-control px-3 pt-2"
+                  formControlName="email"
+                />
+                <img
+                  src="./assets/landing/placeholder.svg"
+                  class="placeholder-bg"
+                />
+                <p class="placeholder-text">
+                  <span class="fa fa-envelope"></span> Email
+                </p>
+              </div>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <div class="row py-4">
+                <textarea
+                  rows="3"
+                  class="form-control px-3 pt-2"
+                  formControlName="direction"
+                ></textarea>
+                <img
+                  src="./assets/landing/placeholder.svg"
+                  class="placeholder-bg"
+                />
+                <p class="placeholder-text">
+                  <span class="fa fa-address-card"></span> Direccion
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <button
+              type="submit"
+              class="boton btn px-4 align-self-center"
+              style="background-color: #ffa822"
+              (click)="createMember()"
+            >
+              Registrar
+              <span class="fa fa-arrow-right"></span>
+            </button>
+          </div>
+        </form>
+        <!-- Fin del Form -->
+      </div>
+    </div>
+  </div>
+</div>

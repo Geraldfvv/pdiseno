@@ -1,0 +1,45 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<div class="container-fluid">
+  <a href="/home" class="my-3 mr-4"><i class="fa fa-arrow-circle-left fa-2x" style="color: #134e6f"></i></a>
+	<div class="row">
+		<div class="col-md-12 " >
+			<div class="card-page">
+				<div class="card-body">
+					<div class="row" style="text-align: center;">
+            <div class="col-md-4">
+              <div class="col-md-12">
+                <img src="../../../assets/menu/zone.png" class="responsive">
+              </div>
+              <div class="col-md-12">
+                <button class="boton btn px-4" style="background-color: #1AC0C6; margin-top: 20px;" 
+                (click)="goZones()">Ir a Zonas</button>
+              </div>   
+            </div>
+            <div class="col-md-4">
+              <div class="col-md-12">
+                <img src="../../../assets/menu/branch.png" class="responsive">
+              </div> 
+              <div class="col-md-12">
+                <button class="boton btn px-4" style="background-color: #134e6f; margin-top: 20px;" 
+                (click)="onStructure('branch')">Ir a Ramas</button>
+              </div> 
+             
+            </div>
+            <div class="col-md-4">
+              <div class="col-md-12">
+                <img src="../../../assets/menu/group.png" class="responsive">
+              </div> 
+              <div class="col-md-12">
+                <button class="boton btn px-4" style="background-color: #FF6150; margin-top: 20px;"
+                (click)="onStructure('group')">Ir a Grupos</button>
+              </div> 
+            </div>
+          </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,123 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12" >
+			<div class="card-page">
+        <div class="card-body">
+          <div class="row" >
+            <div class="col-md-12">
+              <nav>
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a (click)="breadcrumb(0)">{{ structService.org[1] }}</a>
+                  </li>
+                  <li class="breadcrumb-item" *ngIf="structService.structureFlow.length >= 1">
+                    <a (click)="breadcrumb(1)">{{structService.structureFlow[0].name}}</a>
+                  </li>
+                  <li class="breadcrumb-item" *ngIf="structService.structureFlow.length >= 2">
+                    <a (click)="breadcrumb(2)">{{structService.structureFlow[1].name}}</a>
+                  </li>
+                  <li class="breadcrumb-item" *ngIf="structService.structureFlow.length >= 3">
+                    <a>{{structService.structureFlow[2].name}}</a>
+                  </li>
+                </ol>
+              </nav>
+            </div>
+            <div class="col-md-12" ><h1>Jefatura</h1></div>
+            <div class="col-md-12" >
+              <div class="row">
+
+                <div class="col-md-4" style="margin-top: 10px;" *ngIf="2 > structService.bossList.length">
+                  <div class="elementAdd">
+                    <div class="row" style=" margin: 5px;">
+                      <div class="col-md-12" role="button" data-toggle="modal" href="#boss" style="text-align: center;"><p>Añadir</p></div>
+                    </div>
+                  </div>  
+                </div>
+
+                <div class="col-md-4" style="margin-top: 10px;" *ngFor="let boss of structService.bossList">
+                  <div class="element">
+                    <div class="row" style=" margin: 5px;">
+                      <div class="col-md-8"><p>{{boss.name}}</p></div>
+                      <div class="col-md-4">
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12"><h1>Miembros</h1></div>
+            <div class="col-md-12">
+              <div class="row">
+
+                <div class="col-md-4" style="margin-top: 10px;" *ngIf="structService.type == 'group'" (click)="addMemberAux()">
+                  <div class="elementAdd">
+                    <div class="row" style=" margin: 5px;">
+                      <div class="col-md-12" role="button" data-toggle="modal" href="#add" style="text-align: center;"><p>Añadir</p></div>
+                    </div>
+                  </div>  
+                </div>
+
+                <div class="col-md-4" style="margin-top: 10px;" *ngFor="let member of structService.memberList" >
+                  <div class="element">
+                    <div class="row" style=" margin: 5px;">
+                      <div class="col-md-10"><p>{{member.name}}</p></div>
+                      <div class="col-md-2"><i class="fa fa-trash icons"  (click)="deleteMember(member)"
+                        role="button" data-toggle="modal" href="#confirm" ></i></div>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--addMember-->
+<div class="modal fade" id="add" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Añadir miembro al grupo</h5>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6" style="margin-top: 10px;" *ngFor="let member of memberService.memberList">
+          <div class="element">
+            <div class="row" style=" margin: 5px;">
+              <div class="col-md-12" style="text-align: center;" (click)="addMember(member)"><p>{{member.name}}</p></div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--addBoss-->
+<div class="modal fade" id="boss" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Elegir jefatura</h5>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+        <div class="col-md-6" style="margin-top: 10px;" *ngFor="let member of structService.memberList">
+          <div class="element">
+            <div class="row" style=" margin: 5px;">
+              <div class="col-md-12" style="text-align: center;" (click)="addBoss(member)"><p>{{member.name}}</p></div>
+            </div>
+          </div>  
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

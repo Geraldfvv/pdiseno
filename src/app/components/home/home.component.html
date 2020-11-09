@@ -1,0 +1,61 @@
+<div class="container-fluid my-auto">
+  <div class="row">
+    <div class="col-md-12 mt-5">
+      <p class="text-black" style="font-size: 32px">
+        Surfy Te Ayuda A <br />
+        <b>Manejar Tu Gran Organización</b>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card py-4 px-2 d-flex justify-content-around">
+        <img src="./assets/home/cambios.svg" class="icon" alt="Ubicacion" />
+        <p class="text-black">
+          Maneja todos los cambios dentro de tu organización
+        </p>
+        <button
+          type="submit"
+          class="boton btn px-4 mx-auto"
+          style="background-color: #134e6f"
+          (click)="onManageOrganization()"
+        >
+          Gestionar Cambios
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card py-4 px-2 d-flex justify-content-around">
+        <img src="./assets/home/estructura.svg" class="icon" alt="Ubicacion" />
+        <p class="text-black py-4">Define la estructura de tu organización</p>
+        <button
+          type="submit"
+          class="boton btn px-4 mx-auto"
+          style="background-color: #134e6f"
+          (click)="onMenu()"
+        >
+          Gestionar Organización
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card py-4 px-2 d-flex justify-content-around">
+        <img
+          src="./assets/home/anadirMiembro.svg"
+          class="icon"
+          alt="Ubicacion"
+        />
+        <p class="text-black py-4">Añade nuevos miembros a tu Organización</p>
+        <button
+          type="submit"
+          class="boton btn px-4 mx-auto"
+          style="background-color: #134e6f"
+          (click)="onAddMember()"
+        >
+          Registrar usuarios
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

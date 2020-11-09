@@ -1,0 +1,128 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card-page">
+        <div class="card-body">
+          <!--create button , search-->
+          <div class="row">
+            <div class="col-md-4" style="margin-top: 10px">
+              <a
+                class="boton btn px-4"
+                style="width: 100%"
+                role="button"
+                data-toggle="modal"
+                href="#member"
+                (click)="createAction()"
+                >Crear</a
+              >
+            </div>
+            <div class="col-md-8" style="margin-top: 10px">
+              <div class="input-container">
+                <input class="form-control input-field" placeholder="Buscar" />
+                <i class="fa fa-search icon"></i>
+              </div>
+            </div>
+          </div>
+          <!--row-->
+
+          <!--ELEMENTS-->
+          <div class="row">
+            <div
+              class="col-md-4"
+              style="margin-top: 10px"
+              *ngFor="let structure of structService.structureList"
+            >
+              <div class="element">
+                <div class="row" style="margin: 5px">
+                  <div class="col-md-8" (click)="goStructure(structure)">
+                    <p>{{ structure.name }}</p>
+                  </div>
+                  <div class="col-md-4">
+                    <i
+                      class="fa fa-info-circle icons"
+                      (click)="infoStructure(structure)"
+                    ></i>
+                    <i
+                      class="fa fa-pencil icons"
+                      (click)="editStructure(structure)"
+                      role="button"
+                      data-toggle="modal"
+                      href="#struct"
+                    ></i>
+                    <i
+                      class="fa fa-trash icons"
+                      (click)="deleteStructureAux(structure._id)"
+                      role="button"
+                      data-toggle="modal"
+                      href="#confirm"
+                    ></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--DELETE-->
+<div
+  class="modal fade"
+  id="confirm"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'zone'"
+        >
+          ¿Está seguro de que quiere eliminar esta zona?
+        </h5>
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'branch'"
+        >
+          ¿Está seguro de que quiere eliminar esta rama?
+        </h5>
+        <h5
+          class="modal-title"
+          id="myModalLabel"
+          *ngIf="structService.type == 'group'"
+        >
+          ¿Está seguro de que quiere eliminar este grupo?
+        </h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="boton btn px-4"
+          (click)="deleteStructure()"
+          style="background-color: green"
+          data-dismiss="modal"
+        >
+          Confirmar
+        </button>
+        <button
+          type="button"
+          class="boton btn px-4"
+          data-dismiss="modal"
+          style="background-color: red"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
